@@ -26,7 +26,7 @@ def test_minors_cannot_order_from_the_shop(fsf_address):
     assert not Shop.can_order(user)
 
 
-def test_cannot_order_if_not_verified(fsf_address):
+def test_cannot_order_if_not_verified_and_minor(fsf_address):
     user = User(
         name="bob",
         email="bob@domain.tld",
@@ -37,6 +37,16 @@ def test_cannot_order_if_not_verified(fsf_address):
 
     assert not Shop.can_order(user)
 
+def test_cannot_order_if_not_verified_and_major(fsf_address):
+    user = User(
+        name="bob",
+        email="bob@domain.tld",
+        age=25,
+        address=fsf_address,
+        verified=False,
+    )
+
+    assert not Shop.can_order(user)
 
 def test_foreigners_must_be_foreign_fee(paris_address):
     user = User(
