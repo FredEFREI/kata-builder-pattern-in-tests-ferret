@@ -1,4 +1,5 @@
 from shop import Shop, User
+import UserBuilder
 
 
 def test_happy_path(fsf_address):

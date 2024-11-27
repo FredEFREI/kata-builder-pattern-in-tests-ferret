@@ -1,14 +1,15 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
+from conftest import fsf_address, paris_address
 from shop import User, Address
 
-
-def fsf_address():
-    return Address("51 Franklin Street", "Fifth Floor", "Boston", "02110", "USA")
-
-
-def paris_address():
-    return Address("33 quai d'Orsay", "", "Paris", "75007", "France")
+class Director():
+    def constructor(self, builder):
+        builder.build_name()
+        builder.build_email()
+        builder.build_address()
+        builder.build_age()
+        builder.build_verified()
 
 
 class UserBuilder(ABC):
@@ -132,6 +133,7 @@ class ConcreteUserBuilderLocalUnvalidatedMajor(UserBuilder):
 
     def build_verified(self):
         self.user.verified = False
+
 
 # Happy Path
 class ConcreteUserBuilderLocalValidatedMajor(UserBuilder):
